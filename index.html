@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+      background-size: 800% 800%;
+      animation: gradientMove 10s ease infinite;
+      text-align: center;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      font-family: 'Pacifico', cursive;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff6f61; }
+      to { text-shadow: 0 0 20px #fff, 0 0 40px #ff1493; }
+    }
+
+    .names {
+      font-size: 2.2em;
+      margin: 20px 0;
+      font-weight: bold;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .message {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+      background: rgba(255,255,255,0.2);
+      padding: 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      transition: transform 0.4s, rotate 0.4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    video {
+      width: 90%;
+      max-width: 500px;
+      margin-top: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 15px 30px;
+      background: linear-gradient(45deg, #ff6f61, #ff1493);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    #surprise {
+      margin-top: 20px;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: 0;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(720deg); }
+    }
+
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 40px;
+      height: 50px;
+      background: red;
+      border-radius: 50%;
+      animation: floatUp 8s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120vh); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎉 Happy Birthday! 🎉</h1>
+
+    <div class="names">
+      Kinju • Fuggi • Judy
+    </div>
+
+    <div class="message">
+      Wishing you a fantastic birthday filled with smiles, laughter, and unforgettable moments. 
+      Friendship like ours makes every day brighter and every memory special. 
+      May this year bring more fun, success, and amazing adventures together.
+    </div>
+
+    <div class="gallery">
+      <img src="images/photo1.jpg">
+      <img src="images/photo2.jpg">
+      <img src="images/photo3.jpg">
+    </div>
+
+    <video controls>
+      <source src="videos/birthday.mp4" type="video/mp4">
+    </video>
+
+    <button class="btn" onclick="showMessage()">Click for Surprise 🎁</button>
+
+    <p id="surprise"></p>
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById('surprise').innerText = "Cheers to more memories, laughter, and friendship! 🎂";
+      createConfetti();
+      createBalloons();
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 70; i++) {
+        let c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+        c.style.animationDuration = (Math.random()*3+2) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 5000);
+      }
+    }
+
+    function createBalloons() {
+      for (let i = 0; i < 20; i++) {
+        let b = document.createElement('div');
+        b.className = 'balloon';
+        b.style.left = Math.random() * 100 + 'vw';
+        b.style.backgroundColor = `hsl(${Math.random()*360},100%,60%)`;
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 8000);
+      }
+    }
+  </script>
+
+</body>
+</html>
